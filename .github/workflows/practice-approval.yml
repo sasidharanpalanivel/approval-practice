@@ -12,14 +12,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Checking that all the LEGO pieces fit... all good!"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pytest
+      - run: pytest -v
 
   # STEP 2: the robot makes a preview (pretend Terraform plan)
   plan:
     needs: tests
     runs-on: ubuntu-latest
     steps:
-      - run: echo "PLAN -  I would build 1 house and paint the door red."
+      - run: echo "PLAN - I would build 1 house and paint the door red."
 
   # STEP 3: the robot WAITS here until a person approves.
   # The pause comes from the 'environment' line below.
