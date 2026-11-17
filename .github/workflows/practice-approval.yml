@@ -1,0 +1,31 @@
+name: Practice - build with approval
+
+# Runs when you push to the "main" branch, or when you click "Run workflow" manually
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  # STEP 1: the robot checks your work (pretend tests)
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Checking that all the LEGO pieces fit... all good!"
+
+  # STEP 2: the robot makes a preview (pretend Terraform plan)
+  plan:
+    needs: tests
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "PLAN: I would build 1 house and paint the door red."
+
+  # STEP 3: the robot WAITS here until a person approves.
+  # The pause comes from the 'environment' line below.
+  apply:
+    needs: plan
+    runs-on: ubuntu-latest
+    environment: practice-approval
+    steps:
+      - run: echo "Approved! Building the house for real now."
