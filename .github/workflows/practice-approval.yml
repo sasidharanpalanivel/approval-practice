@@ -19,7 +19,7 @@ jobs:
     needs: tests
     runs-on: ubuntu-latest
     steps:
-      - run: echo "PLAN: I would build 1 house and paint the door red."
+      - run: echo "PLAN -  I would build 1 house and paint the door red."
 
   # STEP 3: the robot WAITS here until a person approves.
   # The pause comes from the 'environment' line below.
